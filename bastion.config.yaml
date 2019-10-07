@@ -5,7 +5,7 @@ dns_format: ${EnvironmentName}.${DnsDomain}
 
 iam_services: ec2
 
-enable_efs: true
+enable_efs: false
 
 iam_policies:
   associate-address:

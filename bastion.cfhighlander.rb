@@ -14,5 +14,6 @@ CfhighlanderTemplate do
     ComponentParam 'VPCId', type: 'AWS::EC2::VPC::Id'
     ComponentParam 'AsgMin', 1
     ComponentParam 'AsgMax', 1
+    ComponentParam 'FileSystem' if enable_efs
   end
 end
