@@ -56,6 +56,9 @@ CloudFormation do
     "aws --region ", Ref("AWS::Region"), " ec2 associate-address --allocation-id ", FnGetAtt('BastionIPAddress','AllocationId') ," --instance-id $(curl http://169.254.169.254/2014-11-05/meta-data/instance-id -s)\n",
     "hostname ", Ref('EnvironmentName') ,"-" ,"#{instance_name}-`/opt/aws/bin/ec2-metadata --instance-id|/usr/bin/awk '{print $2}'`\n",
     "sed '/HOSTNAME/d' /etc/sysconfig/network > /tmp/network && mv -f /tmp/network /etc/sysconfig/network && echo \"HOSTNAME=", Ref('EnvironmentName') ,"-" ,"#{instance_name}-`/opt/aws/bin/ec2-metadata --instance-id|/usr/bin/awk '{print $2}'`\" >>/etc/sysconfig/network && /etc/init.d/network restart\n",
+    "mkdir /efs\n",
+    "yum install -y nfs-utils\n",
+    "mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 ", Ref("FileSystem"), ".efs.", Ref("AWS::Region"),".amazonaws.com:/ /efs\n",
   ]
 
   bastion_userdata.push(*userdata.split("\n")) if defined? userdata
