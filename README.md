@@ -28,7 +28,7 @@ VPC component
 | DnsDomain       | Domain name to connect with      |              | False        | String              |                              | Yes
 | SubnetIds       | Subnet(s) bastion will reside in |              | False        | CommaDelimitedList  |                              | Yes
 | VPCId           | VPC bastion will reside in       |              | False        | AWS::EC2::VPC::Id   |                              | Yes
-| AsgMin          | Autoscaling group minimum value  | 1            | False        | Intsee              |                              | Yes
+| AsgMin          | Autoscaling group minimum value  | 1            | False        | Int                 |                              | Yes
 | AsgMax          | Autoscaling group minimum value  | 1            | False        | Int                 |                              | Yes
     
 
